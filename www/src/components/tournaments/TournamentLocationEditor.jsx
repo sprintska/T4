@@ -41,7 +41,7 @@ class TournamentLocationEditor extends React.Component {
     // TODO: insert a "success" toast
   };
 
-  handleDateUpdate = (event) => {
+  handleLocationUpdate = (event) => {
     this.setState({ new_tournament_location: event.target.value });
   };
 
@@ -81,7 +81,7 @@ class TournamentLocationEditor extends React.Component {
                       type="text"
                       placeholder="f"
                       required
-                      onChange={this.handleDateUpdate}
+                      onChange={this.handleLocationUpdate}
                       value={this.state.new_tournament_location}
                       autoFocus
                     />

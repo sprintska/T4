@@ -2,15 +2,13 @@ import React from "react";
 import { Form, Button, Col, FloatingLabel, Row } from "react-bootstrap";
 
 class TournamentPlayerSummary extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log(JSON.stringify(props));
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
     return (
       <Row>
-        {console.log(this.props.player.player_name)}
         <Col>{this.props.player.player_name}</Col>
         <Col>{this.props.player.rank}</Col>
         <Col>{this.props.player.tournament_points}</Col>

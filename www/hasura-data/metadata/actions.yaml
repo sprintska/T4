@@ -1,6 +1,12 @@
-actions: []
+actions:
+  - name: NextRoundMatches
+    definition:
+      kind: synchronous
+      handler: http://matchmaker.advancedtransponder.net:80/NextRoundMatches
+    comment: Generate the next round of matches for the event
 custom_types:
   enums: []
   input_objects: []
-  objects: []
+  objects:
+    - name: NextRoundMatchesOutput
   scalars: []

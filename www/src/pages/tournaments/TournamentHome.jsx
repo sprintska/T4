@@ -22,6 +22,7 @@ const tournamentByIdDoc = `
       lists_visible
       lists_locked
       ladder_visible
+      ScoringRuleset
       signups_open
       Ladder_aggregate {
         aggregate {
@@ -34,15 +35,15 @@ const tournamentByIdDoc = `
       Creator {
         name
       }
+      ScoringRuleset {
+        game
+        name
+      }
     }
   }
 `;
 
 class TournamentHome extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.queryTournament();
   }
@@ -89,47 +90,42 @@ class TournamentHome extends React.Component {
   }
 
   render() {
-    var is_owner = true; // stand-in for eventual authentication, of course
+    var is_owner = false; // stand-in for eventual authentication, of course
+
+    if (!(this.state && this.state.tournament)) {
+      return (
+        <>
+          {this.breadcrumbs()}
+          <div>Loading...</div>
+        </>
+      );
+    }
 
     if (is_owner) {
-      if (this.state && this.state.tournament) {
-        return (
-          <>
-            {this.breadcrumbs()}
-            <TournamentAdminHeader
-              tournament={this.state.tournament}
-              update_tournament={this.updateTournament}
-            />
-            <Ladder
-              tournament={this.state.tournament}
-              update_tournament={this.updateTournament}
-            />
-          </>
-        );
-      } else {
-        return (
-          <>
-            {this.breadcrumbs()}
-            <div>Loading...</div>
-          </>
-        );
-      }
+      return (
+        <>
+          {this.breadcrumbs()}
+          <TournamentAdminHeader
+            tournament={this.state.tournament}
+            update_tournament={this.updateTournament}
+          />
+          <Ladder
+            tournament={this.state.tournament}
+            update_tournament={this.updateTournament}
+          />
+        </>
+      );
     } else {
-      if (this.state && this.state.tournament) {
-        return (
-          <>
-            {this.breadcrumbs()}
-            <TournamentHeader tournament={this.state.tournament} />
-          </>
-        );
-      } else {
-        return (
-          <>
-            {this.breadcrumbs()}
-            <div>Loading...</div>
-          </>
-        );
-      }
+      return (
+        <>
+          {this.breadcrumbs()}
+          <TournamentHeader tournament={this.state.tournament} />
+          <Ladder
+            tournament={this.state.tournament}
+            update_tournament={this.updateTournament}
+          />
+        </>
+      );
     }
   }
 }

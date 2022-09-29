@@ -1,35 +1,35 @@
-import { React, useState } from "react";
+import { React } from "react";
 import format from "date-fns/format";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 function TournamentHeader(props) {
-  const [showTournamentDateEditor, setShowTournamentDateEditor] =
-    useState(false);
-  const [
-    showTournamentRegistrationEditor,
-    setShowTournamentRegistrationEditor,
-  ] = useState(false);
-  const [
-    showTournamentListProtectionEditor,
-    setShowTournamentListProtectionEditor,
-  ] = useState(false);
-  const [showTournamentLocationEditor, setShowTournamentLocationEditor] =
-    useState(false);
-  const [
-    showTournamentLadderProtectionEditor,
-    setShowTournamentLadderProtectionEditor,
-  ] = useState(false);
-  const [showTournamentAdminEditor, setShowTournamentAdminEditor] =
-    useState(false);
+  // const [showTournamentDateEditor, setShowTournamentDateEditor] =
+  //   useState(false);
+  // const [
+  //   showTournamentRegistrationEditor,
+  //   setShowTournamentRegistrationEditor,
+  // ] = useState(false);
+  // const [
+  //   showTournamentListProtectionEditor,
+  //   setShowTournamentListProtectionEditor,
+  // ] = useState(false);
+  // const [showTournamentLocationEditor, setShowTournamentLocationEditor] =
+  //   useState(false);
+  // const [
+  //   showTournamentLadderProtectionEditor,
+  //   setShowTournamentLadderProtectionEditor,
+  // ] = useState(false);
+  // const [showTournamentAdminEditor, setShowTournamentAdminEditor] =
+  //   useState(false);
 
   var list_visibility = props.tournament.lists_visible ? "visible" : "hidden";
   var list_availability = props.tournament.lists_locked
     ? `Lists ${list_visibility} & locked`
     : `Lists ${list_visibility} & unlocked`;
-  var ladder_visibility = props.tournament.ladder_visibility
-    ? "Ladder hidden"
-    : "Ladder visible";
+  var ladder_visibility = props.tournament.ladder_visible
+    ? "Ladder visible"
+    : "Ladder hidden";
   var signup_availability = props.tournament.signups_open
     ? "Signups open"
     : "Signups closed";
@@ -42,18 +42,11 @@ function TournamentHeader(props) {
       </h4>
       <p className="text-white">{props.tournament.description}</p>
       <Row className="pt-3 small">
-        {/* Timezone issue: day of the month off by one depending on tz; 
-          need to figure out overall tz approach*/}
         <Col xs={12} md>
           <Row>
             <Col>
               <i className="bi bi-calendar3 text-primary"></i>{" "}
               {format(props.tournament.start, "eeee, dd MMM, yyyy")}
-              {/* <TournamentPlayerEditor
-                show={this.state.showTournamentPlayerEditor}
-                onHide={() => this.handleAddPlayerClose()}
-                tournament_id={props.tournament.id}
-              /> */}
             </Col>
           </Row>
           <Row>

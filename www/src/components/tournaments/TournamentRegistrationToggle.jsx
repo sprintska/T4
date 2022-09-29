@@ -1,7 +1,6 @@
 import React from "react";
 import Query from "../../data/T4GraphContext";
-import { Form, Button, Col, FloatingLabel, Row } from "react-bootstrap";
-import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 const updateRegistrationDoc = `
   mutation updateRegistration($signups_open: Boolean, $tournament_id: uuid = "") {

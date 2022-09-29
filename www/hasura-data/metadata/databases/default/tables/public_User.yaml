@@ -2,13 +2,6 @@ table:
   name: User
   schema: public
 array_relationships:
-  - name: MatchPlayers
-    using:
-      foreign_key_constraint_on:
-        column: user_id
-        table:
-          name: MatchPlayer
-          schema: public
   - name: TournamentPlayers
     using:
       foreign_key_constraint_on:

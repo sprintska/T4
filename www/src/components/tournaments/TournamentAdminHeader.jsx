@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import format from "date-fns/format";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import TournamentAdminEditor from "./TournamentAdminEditor";
@@ -14,20 +14,12 @@ import TournamentRegistrationToggle from "./TournamentRegistrationToggle";
 function TournamentAdminHeader(props) {
   const [showTournamentDateEditor, setShowTournamentDateEditor] =
     useState(false);
-  // const [
-  //   showTournamentRegistrationEditor,
-  //   setShowTournamentRegistrationEditor,
-  // ] = useState(false);
   const [
     showTournamentListProtectionEditor,
     setShowTournamentListProtectionEditor,
   ] = useState(false);
   const [showTournamentLocationEditor, setShowTournamentLocationEditor] =
     useState(false);
-  // const [
-  //   showTournamentLadderProtectionEditor,
-  //   setShowTournamentLadderProtectionEditor,
-  // ] = useState(false);
   const [showTournamentAdminEditor, setShowTournamentAdminEditor] =
     useState(false);
   const [showTournamentPlayerEditor, setShowTournamentPlayerEditor] =
@@ -46,10 +38,26 @@ function TournamentAdminHeader(props) {
 
   return (
     <div>
-      <h2 className="">{props.tournament.name || "Fetching Event..."}</h2>
-      <h4 className="text-secondary" style={{ fontVariant: ["small-caps"] }}>
-        {props.tournament.Game.value || "Fetching Game..."}
-      </h4>
+      <Container>
+        <Row>
+          <h1 className="">{props.tournament.name || "Fetching Event..."}</h1>
+        </Row>
+        <Row>
+          <Col>
+            <h4
+              className="text-secondary"
+              style={{ fontVariant: ["small-caps"] }}
+            >
+              {props.tournament.Game.value || "Fetching Game..."}
+            </h4>
+          </Col>
+          <Col>
+            <h5 className="text-secondary">
+              {props.tournament.ScoringRuleset.name || "Fetching Ruleset..."}
+            </h5>
+          </Col>
+        </Row>
+      </Container>
       <p className="text-white">{props.tournament.description}</p>
       <Row className="pt-3 small">
         {/* Timezone issue: day of the month may be off by one depending on tz; 

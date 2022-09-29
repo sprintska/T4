@@ -1,7 +1,7 @@
 import React from "react";
 import Query from "../../data/T4GraphContext";
 import TournamentPlayerSummary from "./TournamentPlayerSummary";
-import { Form, Button, Col, FloatingLabel, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 
 const tournamentPlayersDoc = `
 query AllTournamentPlayers($tournament_id: uuid = "") {
@@ -57,24 +57,33 @@ class Ladder extends React.Component {
   }
 
   render() {
-    if (this.state && this.state.tournamentPlayers) {
-      console.log("Got past the state check...");
-      return (
-        <div>
-          <Row className="pb-3">
-            <Col>Player</Col>
-            <Col>Rank</Col>
-            <Col>TP</Col>
-            <Col>MoV</Col>
-            <Col>Wins</Col>
-            <Col>Losses</Col>
-            <Col>Club</Col>
-          </Row>
-          {this.state.tournamentPlayers.map((player) => (
-            <TournamentPlayerSummary key={player.id} player={player} />
-          ))}
-        </div>
-      );
+    if (this.state && this.state.tournamentPlayers && this.props.tournament) {
+      if (!this.props.tournament.ladder_visible) {
+        return (
+          <div>
+            <Row>
+              <Col className="text-center">Lists are hidden.</Col>
+            </Row>
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            <Row className="pb-3">
+              <Col>Player</Col>
+              <Col>Rank</Col>
+              <Col>TP</Col>
+              <Col>MoV</Col>
+              <Col>Wins</Col>
+              <Col>Losses</Col>
+              <Col>Club</Col>
+            </Row>
+            {this.state.tournamentPlayers.map((player) => (
+              <TournamentPlayerSummary key={player.id} player={player} />
+            ))}
+          </div>
+        );
+      }
     } else {
       return <div>Loading...</div>;
     }
