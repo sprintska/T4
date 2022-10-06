@@ -9,8 +9,7 @@ services:
       POSTGRES_PASSWORD: postgrespassword
 
   graphql-engine:
-    image: sprintska/t4/graphql-engine:latest
-    # command: /entrypoint.sh
+    image: hasura/graphql-engine:latest.cli-migrations-v3
     ports:
     - "8080:8080"
     depends_on:
@@ -21,19 +20,19 @@ services:
     - ./www/hasura-data/migrations:/hasura-migrations
     - ./www/hasura-data/metadata:/hasura-metadata
     environment:
-      ENDPOINT: http://localhost:8080
+      ENDPOINT: http://0.0.0.0:8080
       ## postgres database to store Hasura metadata
       HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
       ## this env var can be used to add the above postgres database to Hasura as a data source. this can be removed/updated based on your needs
       PG_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
       ## disable the console served by server, which creates inconsistent metadata states. For console, use `$> hasura console`.
-      HASURA_GRAPHQL_ENABLE_CONSOLE: "false"
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
       ## enable debugging mode. It is recommended to disable this in production.
       HASURA_GRAPHQL_DEV_MODE: "true"
       ## enable/disable logs by type.
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
       ## uncomment next line to set an admin secret
-      # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+      HASURA_GRAPHQL_ADMIN_SECRET: hasura_admin_secret
       ## PostGres reconnect attempts--necessary because PG isn't always available immediately upon startup
       HASURA_GRAPHQL_NO_OF_RETRIES: 5
 volumes:
