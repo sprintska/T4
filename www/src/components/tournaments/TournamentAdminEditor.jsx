@@ -4,17 +4,17 @@ import { Form, Button, Col, FloatingLabel, Row } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 
 const updateTournamentDateDoc = `
-mutation updateTournamentPlayerByName($tournament_id: uuid = "", $player_name: String = "", $player_club: String = "") {
-  insert_TournamentPlayer(objects: {tournament_id: $tournament_id, player_name: $player_name, club: $player_club}) {
-    returning {
-      player_name
-      Tournament {
-        name
+  mutation updateTournamentPlayerByName($tournament_id: uuid = "", $player_name: String = "", $player_club: String = "") {
+    insert_TournamentPlayer(objects: {tournament_id: $tournament_id, player_name: $player_name, club: $player_club}) {
+      returning {
+        player_name
+        Tournament {
+          name
+        }
+        id
       }
-      id
     }
-  }
-}`;
+  }`;
 
 class TournamentAdminEditor extends React.Component {
   constructor(props) {

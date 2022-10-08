@@ -4,25 +4,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 function TournamentHeader(props) {
-  // const [showTournamentDateEditor, setShowTournamentDateEditor] =
-  //   useState(false);
-  // const [
-  //   showTournamentRegistrationEditor,
-  //   setShowTournamentRegistrationEditor,
-  // ] = useState(false);
-  // const [
-  //   showTournamentListProtectionEditor,
-  //   setShowTournamentListProtectionEditor,
-  // ] = useState(false);
-  // const [showTournamentLocationEditor, setShowTournamentLocationEditor] =
-  //   useState(false);
-  // const [
-  //   showTournamentLadderProtectionEditor,
-  //   setShowTournamentLadderProtectionEditor,
-  // ] = useState(false);
-  // const [showTournamentAdminEditor, setShowTournamentAdminEditor] =
-  //   useState(false);
-
   var list_visibility = props.tournament.lists_visible ? "visible" : "hidden";
   var list_availability = props.tournament.lists_locked
     ? `Lists ${list_visibility} & locked`

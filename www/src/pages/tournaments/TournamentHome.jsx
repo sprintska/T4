@@ -90,7 +90,7 @@ class TournamentHome extends React.Component {
   }
 
   render() {
-    var is_owner = false; // stand-in for eventual authentication, of course
+    var is_owner = true; // stand-in for eventual authentication, of course
 
     if (!(this.state && this.state.tournament)) {
       return (

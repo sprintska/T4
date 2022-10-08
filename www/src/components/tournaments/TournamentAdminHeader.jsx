@@ -3,6 +3,7 @@ import format from "date-fns/format";
 import { Button, Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import RoundGenerator from "./RoundGenerator";
 import TournamentAdminEditor from "./TournamentAdminEditor";
 import TournamentDateEditor from "./TournamentDateEditor";
 import TournamentLadderToggle from "./TournamentLadderToggle";
@@ -216,6 +217,17 @@ function TournamentAdminHeader(props) {
             tournament={props.tournament}
             update_tournament={props.update_tournament}
           />
+        </Col>
+        <Col xs={12} md={6}>
+          <div className="d-grid">
+            {/* Administrator */}
+            <RoundGenerator
+              // show={showTournamentAdminEditor}
+              // onHide={() => setShowTournamentAdminEditor(false)}
+              tournament={props.tournament}
+              // update_tournament={props.update_tournament}
+            />
+          </div>
         </Col>
       </Row>
       <hr />
